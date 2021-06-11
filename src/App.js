@@ -1,10 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { GoogleApiWrapper } from 'google-maps-react';
+import AutoComplete from './components/autocomplete'
 
-function App() {
+// import logo from './logo.svg';
+import './App.scss';
+
+function App({google}) {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,9 +21,17 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <AutoComplete google={google} />
     </div>
   );
 }
 
-export default App;
+const Loading = () => <div>Fancy loading container</div>;
+
+// export default App;
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyDuhesbZswaTWR_JHNmzZ28yFcF2lcPtsk',
+  libraries: ['places', 'visualization'],
+  LoadingContainer: Loading
+})(App);
